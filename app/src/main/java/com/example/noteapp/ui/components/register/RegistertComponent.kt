@@ -23,11 +23,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.noteapp.models.LoginViewModel
 import com.example.noteapp.models.RegisterViewModel
-import com.example.noteapp.ui.ui.ui.HomeActivity
-import com.example.noteapp.ui.ui.ui.auth.LoginActivity
-import com.example.noteapp.ui.ui.ui.auth.RegistetrActivity
+import com.example.noteapp.ui.HomeActivity
+import com.example.noteapp.ui.authActivity.LoginActivity
 
 @Composable
 fun RegisterComponent(

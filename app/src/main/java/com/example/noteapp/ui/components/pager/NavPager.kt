@@ -10,19 +10,20 @@ fun NavPager() {
 
     //handel  navController to slid 3 page and next step
     val navController = rememberNavController()
-    NavHost(navController =navController ,
+    NavHost(
+        navController = navController,
         startDestination = "onboarding"
-        ){
+    ) {
         composable("onboarding") {
             OnboardingScreen(onFinish = {
-                navController.navigate("home"){
-                    popUpTo("onboarding"){
+                navController.navigate("home") {
+                    popUpTo("onboarding") {
                         inclusive = true
                     }
                 }
             })
 
-           }
+        }
         composable("home") {
 
         }

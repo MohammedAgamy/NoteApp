@@ -24,30 +24,35 @@ class LoginViewModel(private val repo: RepositoryLogin) : ViewModel() {
     val passwordError: StateFlow<Boolean> = _passwordError
 
 
-
     private val _loginResult = MutableStateFlow<Result<Boolean>?>(null)
     val loginResult: StateFlow<Result<Boolean>?> = _loginResult
 
-    fun viewModelLogIn(){
-            viewModelScope.launch {
-                _loginResult.value = repo.login(_email.value, _password.value)
-            }
+
+    private val _isLoggedIn = MutableStateFlow(false)
+    var isLoggedIn: StateFlow<Boolean> = _isLoggedIn
+
+    fun setLoginState(isLoggedIn: Boolean) {
+        _isLoggedIn.value = isLoggedIn
+    }
+
+    fun viewModelLogIn() {
+        viewModelScope.launch {
+            _loginResult.value = repo.login(_email.value, _password.value)
+        }
 
     }
 
-        fun updateEmail(input: String) {
-            _email.value = input
-            _emailError.value =
-                input.isBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(input)
-                    .matches()  // Check email format
-        }
+    fun updateEmail(input: String) {
+        _email.value = input
+        _emailError.value =
+            input.isBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(input)
+                .matches()  // Check email format
+    }
 
-        fun updatePassword(input: String) {
-            _password.value = input
-            _passwordError.value = input.isBlank()  // pass cannot be empty
-        }
-
-
+    fun updatePassword(input: String) {
+        _password.value = input
+        _passwordError.value = input.isBlank()  // pass cannot be empty
+    }
 
 
 }

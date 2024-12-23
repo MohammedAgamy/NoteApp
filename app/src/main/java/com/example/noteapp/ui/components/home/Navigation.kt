@@ -21,14 +21,22 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.noteapp.R
+import com.example.noteapp.models.LoginViewModel
+import com.example.noteapp.models.NotesViewModel
+import com.example.noteapp.repo.repoLogin.RepositoryLoginImpl
+import com.example.noteapp.repo.reponote.NoteRepository
+import com.example.noteapp.repo.reponote.NoteRepositoryImpl
 import com.example.noteapp.ui.components.home.navscreens.CreateNoteScreen
 import com.example.noteapp.ui.components.home.navscreens.EventsScreen
 import com.example.noteapp.ui.components.home.navscreens.NotesScreen
 import com.example.noteapp.ui.components.home.navscreens.SearchScreen
 
 @Composable
-fun Navigation (){
+fun Navigation() {
     val navController = rememberNavController()
+
+
+
     Scaffold(
         bottomBar = { MyBottomBar(navController) }
     ) { innerPadding ->
@@ -37,10 +45,10 @@ fun Navigation (){
             startDestination = "notes",
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("notes") { NotesScreen() }
+            composable("notes") { NotesScreen(viewModel = NotesViewModel(NoteRepositoryImpl())) }
             composable("search") { SearchScreen() }
             composable("event") { EventsScreen() }
-            composable("create_note") { CreateNoteScreen() }
+            composable("create_note") { CreateNoteScreen(navController) }
         }
     }
 }

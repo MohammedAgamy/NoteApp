@@ -12,25 +12,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App.Starting"
+        android:theme="@style/Theme.NoteApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ui.ui.auth.RegistetrActivity"
+            android:name=".ui.authActivity.RegistetrActivity"
             android:exported="false"
             android:label="@string/title_activity_registetr"
             android:theme="@style/Theme.NoteApp" />
         <activity
-            android:name=".ui.ui.ui.auth.LoginActivity"
+            android:name=".ui.authActivity.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.NoteApp" />
         <activity
-            android:name=".ui.ui.ui.HomeActivity"
+            android:name=".ui.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.NoteApp" />
         <activity
-            android:name=".ui.ui.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.App.Starting">

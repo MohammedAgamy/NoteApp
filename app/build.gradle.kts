@@ -93,5 +93,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     //
     implementation(libs.kotlinx.serialization.json)
+    //firestore
+    implementation(libs.firebase.firestore)
 
 }

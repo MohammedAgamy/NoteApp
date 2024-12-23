@@ -1,4 +1,4 @@
-package com.example.noteapp.ui.ui.ui.auth
+package com.example.noteapp.ui.authActivity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,15 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.noteapp.models.LoginViewModel
-import com.example.noteapp.repo.repoLogin.RepositoryLoginImpl
-import com.example.noteapp.ui.components.login.LogInComponent
-import com.example.noteapp.ui.components.login.TextTitle
+import com.example.noteapp.models.RegisterViewModel
+import com.example.noteapp.repo.reporegister.RepositoryRegisterImpl
+import com.example.noteapp.ui.components.register.RegisterComponent
+import com.example.noteapp.ui.components.register.TextTitleRegister
+import com.example.noteapp.ui.theme.NoteAppTheme
 
-import com.example.noteapp.ui.ui.theme.NoteAppTheme
-
-class LoginActivity : ComponentActivity() {
-    private val loginViewModel by lazy { LoginViewModel(RepositoryLoginImpl()) }
+class RegistetrActivity : ComponentActivity() {
+    private val registerViewModel by lazy { RegisterViewModel(RepositoryRegisterImpl()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +37,10 @@ class LoginActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.height(50.dp))
-                    TextTitle()
+                    TextTitleRegister()
                     Spacer(modifier = Modifier.height(50.dp))
-                    LogInComponent(loginViewModel)
+                    RegisterComponent(registerViewModel)
                 }
-
             }
         }
     }

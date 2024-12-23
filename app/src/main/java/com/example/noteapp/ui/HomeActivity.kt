@@ -1,4 +1,4 @@
-package com.example.noteapp.ui.ui.ui
+package com.example.noteapp.ui
 
 import android.os.Build
 import android.os.Bundle
@@ -26,6 +26,7 @@ class HomeActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NoteAppTheme {
+
                 Column(
                     modifier = Modifier
                         .fillMaxSize()

@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.example.noteapp.R
 import com.example.noteapp.data.OnboardingData
-import com.example.noteapp.ui.ui.ui.auth.LoginActivity
+import com.example.noteapp.ui.authActivity.LoginActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
 
