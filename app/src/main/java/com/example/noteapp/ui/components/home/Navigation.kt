@@ -58,7 +58,7 @@ fun Navigation() {
 private fun MyBottomBar(navController: NavHostController) {
     BottomAppBar(
         containerColor = Color.Transparent,
-        modifier = Modifier.height(56.dp) // Optional: Set consistent height
+        modifier = Modifier.height(80.dp) // Optional: Set consistent height
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -85,7 +85,7 @@ fun BottomBarItem(
     description: String
 ) {
     IconButton(
-        onClick = { navController.navigate(route) }, modifier = Modifier.size(12.dp)
+        onClick = { navController.navigate(route) }, modifier = Modifier.size(20.dp)
     ) {
         Icon(painter = painterResource(id = icon), contentDescription = description)
     }

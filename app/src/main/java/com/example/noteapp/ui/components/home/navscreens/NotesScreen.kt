@@ -1,6 +1,7 @@
 package com.example.noteapp.ui.components.home.navscreens
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,13 +12,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialogDefaults.containerColor
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -76,17 +80,26 @@ fun NoteItem(note: NoteModel, onDelete: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 4.dp),
+            .padding(vertical = 8.dp, horizontal = 4.dp), colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFFFFFFF),
+            contentColor = Color.White
+        ),
         elevation = CardDefaults.elevatedCardElevation(4.dp)
     ) {
-        Row(modifier = Modifier.fillMaxSize()) {
+        Row(modifier = Modifier.fillMaxWidth()) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
                     .padding(16.dp)
+                    .weight(3f)
+
             ) {
-                Text(text = note.title, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                Text(text = note.content)
+                Text(
+                    text = note.title,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+                Text(text = note.content, fontSize = 12.sp, color = Color.Gray)
                 Text(
                     text = "Last updated: ${formatTimeStamp(note.timeStamp)}", // Assuming timestamp exists
                     fontSize = 12.sp,
@@ -94,18 +107,20 @@ fun NoteItem(note: NoteModel, onDelete: () -> Unit) {
                     modifier = Modifier.padding(top = 8.dp)
                 )
 
-                IconButton(
-                    onClick =
-                    onDelete,
-                    modifier = Modifier.padding(16.dp),
-                    colors = IconButtonDefaults.iconButtonColors(contentColor = Color.Red) // Customize the icon color
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.baseline_delete_forever_24), // Your custom icon
-                        contentDescription = "Delete",
-                        tint = MaterialTheme.colorScheme.error // Optional, use MaterialTheme for consistent coloring
-                    )
-                }
+            }
+            IconButton(
+                onClick =
+                onDelete,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .weight(1f),
+                colors = IconButtonDefaults.iconButtonColors(contentColor = Color.Red) // Customize the icon color
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_delete_forever_24), // Your custom icon
+                    contentDescription = "Delete",
+                    tint = MaterialTheme.colorScheme.error // Optional, use MaterialTheme for consistent coloring
+                )
             }
         }
 

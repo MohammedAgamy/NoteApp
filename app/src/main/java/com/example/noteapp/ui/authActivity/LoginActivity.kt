@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import com.example.noteapp.models.LoginViewModel
 import com.example.noteapp.repo.repoLogin.RepositoryLoginImpl
@@ -22,7 +24,12 @@ import com.example.noteapp.ui.components.login.TextTitle
 import com.example.noteapp.ui.theme.NoteAppTheme
 
 class LoginActivity : ComponentActivity() {
-    private val loginViewModel by lazy { LoginViewModel(RepositoryLoginImpl()) }
+    private val loginViewModel by lazy {
+        LoginViewModel(
+            RepositoryLoginImpl(),
+            PreferenceManager(this)
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

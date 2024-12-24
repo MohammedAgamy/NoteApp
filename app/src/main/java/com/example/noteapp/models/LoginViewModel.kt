@@ -3,13 +3,14 @@ package com.example.noteapp.models
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.noteapp.repo.repoLogin.RepositoryLogin
+import com.example.noteapp.ui.authActivity.PreferenceManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 
 // view model handel operation to do in model date and used state flow
-class LoginViewModel(private val repo: RepositoryLogin) : ViewModel() {
+class LoginViewModel(private val repo: RepositoryLogin , private val preferenceManager: PreferenceManager) : ViewModel() {
 
     private val _email = MutableStateFlow("")
     val email: StateFlow<String> = _email
@@ -28,11 +29,17 @@ class LoginViewModel(private val repo: RepositoryLogin) : ViewModel() {
     val loginResult: StateFlow<Result<Boolean>?> = _loginResult
 
 
-    private val _isLoggedIn = MutableStateFlow(false)
-    var isLoggedIn: StateFlow<Boolean> = _isLoggedIn
+    private val _isLoggedIn = MutableStateFlow(preferenceManager.isLoggedIn())
+    val isLoggedIn: StateFlow<Boolean> = _isLoggedIn
 
-    fun setLoginState(isLoggedIn: Boolean) {
-        _isLoggedIn.value = isLoggedIn
+    fun logIn() {
+        preferenceManager.setLoggedIn(true)
+        _isLoggedIn.value = true
+    }
+
+    fun logOut() {
+        preferenceManager.setLoggedIn(false)
+        _isLoggedIn.value = false
     }
 
     fun viewModelLogIn() {

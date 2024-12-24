@@ -40,7 +40,6 @@ fun ShowDate() {
                 fontSize = 15.sp,
                 color = Color.Gray,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .padding(horizontal = 8.dp)
 
             )
@@ -51,7 +50,6 @@ fun ShowDate() {
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .padding(horizontal = 8.dp)
             )
         }
@@ -61,9 +59,9 @@ fun ShowDate() {
             contentDescription = "header",
             modifier = Modifier
                 .weight(1f)
-                .size(18.dp)
+                .size(12.dp)
                 .padding(8.dp)
-                .padding(20.dp)
+                .weight(1f)
         )
     }
 

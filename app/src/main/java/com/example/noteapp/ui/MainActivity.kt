@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.noteapp.models.LoginViewModel
 import com.example.noteapp.repo.repoLogin.RepositoryLogin
 import com.example.noteapp.repo.repoLogin.RepositoryLoginImpl
+import com.example.noteapp.ui.authActivity.PreferenceManager
 import com.example.noteapp.ui.components.pager.NavPager
 import com.example.noteapp.ui.theme.NoteAppTheme
 import kotlinx.coroutines.delay
@@ -20,7 +21,12 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    private val loginViewModel by lazy { LoginViewModel(RepositoryLoginImpl()) }
+    private val loginViewModel by lazy {
+        LoginViewModel(
+            RepositoryLoginImpl(),
+            PreferenceManager(this)
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashscreen = installSplashScreen()

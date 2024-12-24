@@ -95,7 +95,7 @@ fun LogInComponent(
             viewModel.viewModelLogIn()
             Log.d("TAG", email)
             Log.d("TAG", password)
-            viewModel.setLoginState(true)
+            viewModel.logIn()
             Log.d("TAG", viewModel.isLoggedIn.toString())
 
         },
