@@ -14,10 +14,11 @@ class NoteRepositoryImpl : NoteRepository {
         return try {
             val snapshot = notesCollection.get().await()
             snapshot.documents.map { doc ->
-                doc.toObject(NoteModel::class.java)!!.copy(id = doc.id)
+                doc.toObject(NoteModel::class.java)!!.copy()
             }
         } catch (e: Exception) {
             emptyList()
+
         }
     }
 
@@ -26,7 +27,7 @@ class NoteRepositoryImpl : NoteRepository {
     }
 
     override suspend fun deleteNote(noteId: NoteModel) :List<NoteModel>{
-        notesCollection.document(noteId.id).delete().await()
+        notesCollection.document(noteId.id.toString()).delete().await()
         note.remove(noteId)
         return note
     }

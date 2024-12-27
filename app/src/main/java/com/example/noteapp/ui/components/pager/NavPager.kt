@@ -7,7 +7,6 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun NavPager() {
-
     //handel  navController to slid 3 page and next step
     val navController = rememberNavController()
     NavHost(
@@ -21,7 +20,8 @@ fun NavPager() {
                         inclusive = true
                     }
                 }
-            })
+            }
+            )
 
         }
         composable("home") {

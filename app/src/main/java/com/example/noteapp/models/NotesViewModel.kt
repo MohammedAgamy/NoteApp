@@ -24,6 +24,7 @@ class NotesViewModel(private val repository: NoteRepositoryImpl) : ViewModel() {
                 val notes = repository.getNotes() // Fetch notes from repository
                 _notesState.value = notes
                 Log.e("FetchNotes", "Done fetching notes:")
+                Log.e("FetchNotes", _notesState.value.toString())
             } catch (e: Exception) {
                 Log.e("FetchNotes", "Error fetching notes: ${e.message}")
             }
