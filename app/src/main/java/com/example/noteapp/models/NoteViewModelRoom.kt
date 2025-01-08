@@ -41,4 +41,11 @@ class NoteViewModelRoom(private  var repository: NoteRepository) : ViewModel() {
             repository.delete(note)
         }
     }
+
+    fun deleteById(id:Int)
+    {
+        viewModelScope.launch {
+            repository.deleteById(id)
+        }
+    }
 }

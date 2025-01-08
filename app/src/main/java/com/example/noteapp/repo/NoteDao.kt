@@ -19,6 +19,9 @@ interface NoteDao {
     @Delete
     suspend fun delete(note: NoteModel)
 
+    @Query("DELETE FROM note WHERE id = :id")
+    suspend fun deleteById(id: Int)
+
     @Query("SELECT * FROM note ORDER BY timestamp DESC")
     fun getAllNotes(): Flow<List<NoteModel>>
 

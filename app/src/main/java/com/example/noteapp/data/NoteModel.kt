@@ -5,8 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "note")
  data class NoteModel(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    @PrimaryKey( autoGenerate = true) var id: Int = 0,
     var title: String = "",
     var content: String = "" ,
     var timeStamp: Long = System.currentTimeMillis()

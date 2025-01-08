@@ -37,25 +37,17 @@ import com.example.noteapp.data.AppDatabase
 import com.example.noteapp.data.NoteModel
 import com.example.noteapp.models.NoteViewModelRoom
 import com.example.noteapp.models.NotesViewModel
-import com.example.noteapp.repo.NoteDao
 import com.example.noteapp.repo.repoRoom.NoteRepository
 import com.example.noteapp.repo.reponote.NoteRepositoryImpl
-import com.google.firebase.firestore.FirebaseFirestore
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CreateNoteScreen(
-    navController: NavHostController
-) {
-
+fun CreateNoteScreen(navController: NavHostController) {
 
     var title by remember { mutableStateOf(TextFieldValue()) }
     var content by remember { mutableStateOf(TextFieldValue()) }
-    val noteViewModel by lazy { NotesViewModel(NoteRepositoryImpl()) }
-    val addId = FirebaseFirestore.getInstance().collection("notes").document()
 
-
-    // Create ViewModel using Factory
+    // Context and ViewModel setup
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context)
     val repository = NoteRepository(database.noteDao())
@@ -68,12 +60,20 @@ fun CreateNoteScreen(
         }
     }
     val noteViewModelRoom: NoteViewModelRoom = viewModel(factory = factory)
+    val noteViewModel by lazy { NotesViewModel(NoteRepositoryImpl()) }
+
+
+
+
+
+
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
     ) {
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -83,85 +83,83 @@ fun CreateNoteScreen(
         ) {
             Button(
                 onClick = {
-                    noteViewModel.addNote(
-                        NoteModel(
-                            title = title.text, content = content.text
-                        )
-                    )
-
-                    noteViewModelRoom.insert(
-                        NoteModel(
-                            title = title.text, content = content.text
+                    // Validate input
+                    if (title.text.isNotBlank() && content.text.isNotBlank()) {
+                        noteViewModelRoom.insert(
+                            NoteModel(
+                                title = title.text,
+                                content = content.text, timeStamp = generateTimestampId()
+                            )
                         )
 
-                    )
+                        noteViewModel.addNote(
+                            NoteModel(
+                                title = title.text,
+                                content = content.text,
 
-                    // Navigate back to the "notes" screen and clear the back stack
-                    navController.navigate("notes") {
-                        popUpTo("notes") { inclusive = true }
+
+                                )
+                        )
+                        // Navigate back to "notes"
+                        navController.navigate("notes") {
+                            popUpTo("notes") { inclusive = true }
+                        }
+                    } else {
+                        Log.d("CreateNoteScreen", "Title or Content cannot be empty")
                     }
-
-                    Log.d("TAGInserrt" , title.text)
-                }, colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
             ) {
                 Text(text = "Save", color = Color.White, fontSize = 16.sp)
             }
         }
 
-
-        TextField(modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 10.dp), value = title,
-
-            onValueChange = {
-                title = it
-            }, placeholder = {
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp),
+            value = title,
+            onValueChange = { title = it },
+            placeholder = {
                 Text(
                     text = "Page Title",
                     color = Color.Gray,
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold
                 )
-            }, colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Transparent, // No background for the text field
-                disabledTextColor = Color.Black,
+            },
+            colors = TextFieldDefaults.textFieldColors(
+                containerColor = Color.Transparent,
                 cursorColor = Color.Blue,
                 focusedIndicatorColor = Color.Black,
                 unfocusedIndicatorColor = Color.Gray
             )
-
         )
 
         Spacer(modifier = Modifier.height(5.dp))
-        OutlinedTextField(modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 10.dp),
-            value = content,
 
-            onValueChange = {
-                content = it
-            },
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 10.dp),
+            value = content,
+            onValueChange = { content = it },
             placeholder = {
                 Text(text = "Enter your note here...", color = Color.Gray)
             },
-            maxLines = Int.MAX_VALUE, // Unlimited lines for long notes
+            maxLines = Int.MAX_VALUE,
             colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Transparent, // No background for the text field
-                disabledTextColor = Color.Black,
+                containerColor = Color.Transparent,
                 cursorColor = Color.Blue,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             )
-
         )
     }
-
-
 }
 
 
 
-
-
-
-
+fun generateTimestampId(): Long {
+    return System.currentTimeMillis()
+}

@@ -41,7 +41,14 @@ class NotesViewModel(private val repository: NoteRepositoryImpl) : ViewModel() {
     fun deleteNote(noteId: NoteModel) {
         viewModelScope.launch {
             repository.deleteNote(noteId)
+            fetchNotes() // Refresh the state
+        }
+    }
 
+
+    fun deleteID(noteId: Int) {
+        viewModelScope.launch {
+            repository.deleteByID(noteId)
             fetchNotes() // Refresh the state
         }
     }
