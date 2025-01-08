@@ -121,5 +121,14 @@ The following libraries and frameworks are used in the project:
 
 Feel free to contribute by forking the repository, making changes, and submitting a pull request. Ensure all code follows the MVVM architecture and adheres to the project's coding guidelines.
 
+## Get Start
+<img src ="https://github.com/MohammedAgamy/NoteApp/blob/master/image/WhatsApp%20Image%202025-01-08%20at%2011.41.37%20PM%20(1).jpeg">
 
-<img src ="https://github.com/MohammedAgamy/TaskArray/blob/master/11.jpg">
+## LogIn
+<img src ="https://github.com/MohammedAgamy/NoteApp/blob/master/image/WhatsApp%20Image%202025-01-08%20at%2011.41.37%20PM.jpeg">
+
+## Home
+<img src ="https://github.com/MohammedAgamy/NoteApp/blob/master/image/WhatsApp%20Image%202025-01-08%20at%2011.41.37%20PM%20(2).jpeg">
+
+## Add Note
+<img src ="https://github.com/MohammedAgamy/NoteApp/blob/master/image/WhatsApp%20Image%202025-01-08%20at%2011.41.38%20PM.jpeg">
