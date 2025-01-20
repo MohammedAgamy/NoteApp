@@ -1,6 +1,6 @@
 package com.example.noteapp.repo.reporegister
 
-import com.example.noteapp.data.RegisterModel
+import com.example.noteapp.data.mvi.RegisterModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
 
