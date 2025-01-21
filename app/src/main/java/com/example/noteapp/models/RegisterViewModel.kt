@@ -59,15 +59,15 @@ class RegisterViewModel(private val repo: RepositoryRegister) : ViewModel() {
 
     private fun handleIntent(intent : UserIntent) {
       when(intent){
-          is UserIntent.AddUserView -> addUser(intent.name, intent.email , intent)
-          UserIntent.LoadUsers -> TODO()
+          is UserIntent.AddUserView -> addUser(intent.name, intent.email , intent.phone, intent.password)
+          UserIntent.LoadUsers -> loadUser()
           UserIntent.UndoDelete -> TODO()
           is UserIntent.UpdateEmail -> TODO()
           is UserIntent.UpdateName -> TODO()
       }
     }
 
-    private fun addUser(name:String , email:String , phone: String , password:String) {
+     fun addUser(name:String , email:String , phone: String , password:String) {
         if (name.isBlank() || email.isBlank()) {
             _viewState.value =
                 _viewState.value.copy(nameError = name.isBlank(), emailError = email.isBlank())
@@ -83,6 +83,13 @@ class RegisterViewModel(private val repo: RepositoryRegister) : ViewModel() {
         }
     }
 
+      fun loadUser()
+     {
+          viewModelScope.launch {
+              _effectChannel.send(SnackbarEffect.ShowSnackbar("User added successfully"))
+
+          }
+     }
 
     fun viewModelRegister() {
         viewModelScope.launch {

@@ -122,7 +122,12 @@ fun RegisterComponent(
 
     Button(
         onClick = {
-            registerViewModel.viewModelRegister()
+            registerViewModel.addUser(
+                name = name,
+                email = email,
+                phone = phone,
+                password = password
+            )
             Log.d("TAG", email)
             Log.d("TAG", password)
 
